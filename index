@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nordix – IT-Dienstleistungen · nordix.cloud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --text: #0f0f0e;
+      --muted: #6b6b66;
+      --accent: #1a3a5c;
+      --accent-light: #e8edf3;
+      --border: rgba(0,0,0,0.09);
+      --font: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(245,244,240,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--mono); font-weight: 500; font-size: 15px;
+      letter-spacing: 0.04em; color: var(--accent); text-decoration: none;
+      display: flex; align-items: center; gap: 5px;
+    }
+
+    .logo-br { color: var(--muted); }
+
+    .logo-dot {
+      width: 6px; height: 6px; background: var(--accent);
+      border-radius: 50%; display: inline-block;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+
+    nav a { text-decoration: none; font-size: 14px; color: var(--muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent) !important; color: #fff !important;
+      padding: 6px 16px; border-radius: 6px; font-size: 13px !important;
+      font-weight: 500; transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 3rem;
+      padding: 8rem 2rem 4rem;
+      max-width: 1020px; margin: 0 auto;
+    }
+
+    .hero-visual { position: relative; height: 440px; cursor: crosshair; }
+    #network-canvas { width: 100%; height: 100%; display: block; }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { height: 260px; order: -1; }
+      nav ul { display: none; }
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 1.4rem; display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--muted); }
+
+    h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.4rem;
+    }
+    h1 em { font-style: normal; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted); max-width: 440px;
+      margin-bottom: 1.8rem; font-weight: 300; line-height: 1.7;
+    }
+
+    .tech-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 2rem; }
+
+    .badge {
+      font-family: var(--mono); font-size: 11px; color: var(--accent);
+      background: var(--accent-light); border: 1px solid rgba(26,58,92,0.15);
+      padding: 3px 10px; border-radius: 4px; letter-spacing: 0.04em;
+    }
+
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-block; background: var(--accent); color: #fff;
+      text-decoration: none; padding: 11px 26px; border-radius: 8px;
+      font-size: 14px; font-weight: 500; transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      display: inline-block; color: var(--accent); text-decoration: none;
+      padding: 11px 26px; border-radius: 8px; font-size: 14px; font-weight: 500;
+      border: 1px solid var(--accent); transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: var(--accent-light); }
+
+    /* SHARED */
+    .section-divider {
+      border: none; border-top: 1px solid var(--border);
+      max-width: 920px; margin: 0 auto;
+    }
+
+    section { max-width: 920px; margin: 0 auto; padding: 5rem 2rem; }
+
+    .section-label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 300; letter-spacing: -0.015em; margin-bottom: 1rem; line-height: 1.2;
+    }
+
+    /* SERVICES */
+    .services-intro { color: var(--muted); font-size: 1rem; font-weight: 300; max-width: 560px; margin-bottom: 3rem; }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+
+    @media (max-width: 720px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 400px) { .services-grid { grid-template-columns: 1fr; } }
+
+    .service-card {
+      background: var(--surface); padding: 2rem 1.5rem;
+      transition: background 0.2s; display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .service-card:hover { background: var(--accent-light); }
+
+    .service-icon {
+      width: 38px; height: 38px; background: var(--accent-light);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    }
+    .service-icon svg {
+      width: 20px; height: 20px; stroke: var(--accent); fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .service-card h3 { font-size: 14px; font-weight: 500; }
+    .service-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* ABOUT */
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 640px) { .about-inner { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .about-text p { color: var(--muted); margin-bottom: 1rem; font-weight: 300; }
+
+    .stat-row { display: flex; gap: 2rem; margin-top: 2rem; }
+
+    .stat-num {
+      font-size: 1.9rem; font-weight: 300; color: var(--accent);
+      letter-spacing: -0.02em; font-family: var(--mono);
+    }
+    .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .about-visual { background: var(--accent); border-radius: 12px; padding: 2.5rem; color: white; }
+    .about-visual .tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; opacity: 0.55; margin-bottom: 1rem; }
+    .about-visual h3 { font-size: 1.35rem; font-weight: 300; line-height: 1.3; margin-bottom: 1.5rem; }
+
+    .about-list { list-style: none; font-size: 13px; }
+    .about-list li {
+      padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.12);
+      opacity: 0.82; display: flex; align-items: center; gap: 8px;
+    }
+    .about-list li::before {
+      content: ''; display: block; width: 4px; height: 4px;
+      border-radius: 50%; background: rgba(255,255,255,0.45); flex-shrink: 0;
+    }
+
+    /* CONTACT */
+    #kontakt { padding-bottom: 6rem; }
+
+    .contact-wrapper {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 4rem; margin-top: 3rem; align-items: start;
+    }
+    @media (max-width: 640px) { .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .contact-info h3 { font-size: 1.05rem; font-weight: 400; margin-bottom: 0.4rem; }
+    .contact-info p { color: var(--muted); font-size: 14px; font-weight: 300; margin-bottom: 1.8rem; }
+
+    .contact-detail { display: flex; flex-direction: column; gap: 10px; }
+    .contact-detail a { font-size: 14px; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    form { display: flex; flex-direction: column; gap: 13px; }
+    label { font-size: 12px; color: var(--muted); margin-bottom: 4px; display: block; }
+
+    input, textarea {
+      width: 100%; padding: 10px 14px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      font-family: var(--font); font-size: 14px; color: var(--text);
+      outline: none; transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    textarea { resize: vertical; min-height: 110px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 420px) { .form-row { grid-template-columns: 1fr; } }
+
+    .submit-btn {
+      background: var(--accent); color: white; border: none;
+      padding: 11px 24px; border-radius: 8px; font-family: var(--font);
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      transition: opacity 0.2s; align-self: flex-start;
+    }
+    .submit-btn:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border); padding: 1.8rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 920px; margin: 0 auto;
+      font-size: 12px; color: var(--muted); font-family: var(--mono);
+    }
+
+    /* TOAST */
+    .toast { display: none; padding: 11px 18px; border-radius: 8px; font-size: 13px; margin-top: 10px; color: white; }
+    .toast.show { display: block; }
+
+    /* TOOLTIP */
+    #node-tooltip {
+      position: fixed; background: var(--accent); color: white;
+      font-family: var(--mono); font-size: 11px;
+      padding: 5px 10px; border-radius: 5px;
+      pointer-events: none; opacity: 0; transition: opacity 0.15s;
+      letter-spacing: 0.04em; z-index: 200;
+    }
+  </style>
+</head>
+<body>
+
+<div id="node-tooltip"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <span class="logo-br">//</span>nordix<span class="logo-dot"></span>cloud
+  </a>
+  <ul>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">IT-Dienstleistungen · Schleswig-Holstein</div>
+    <h1>Technologie,<br />die <em>funktioniert.</em><br />Aus dem Norden.</h1>
+    <p class="hero-sub">Nordix hilft – egal ob Privatperson, Selbstständiger oder Unternehmen. Zuverlässige IT, klar erklärt und persönlich betreut.</p>
+    <div class="tech-badges">
+      <span class="badge">Netzwerk</span>
+      <span class="badge">Server</span>
+      <span class="badge">Cloud</span>
+      <span class="badge">IT-Security</span>
+      <span class="badge">Support</span>
+      <span class="badge">Backup</span>
+    </div>
+    <div class="btn-row">
+      <a href="#kontakt" class="btn-primary">Kontakt aufnehmen</a>
+      <a href="#leistungen" class="btn-secondary">Unsere Leistungen</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <canvas id="network-canvas"></canvas>
+  </div>
+</div>
+
+<hr class="section-divider" />
+
+<!-- SERVICES -->
+<section id="leistungen">
+  <div class="section-label">Leistungen</div>
+  <h2>Was wir für Sie tun können</h2>
+  <p class="services-intro">Von der Heimvernetzung bis zur Unternehmens-IT – wir lösen konkrete technische Probleme und bauen nachhaltige Lösungen.</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+      </div>
+      <h3>Server & Netzwerk</h3>
+      <p>Aufbau stabiler Server-, LAN/WLAN- und Cloud-Umgebungen – für zuhause oder im Betrieb.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>IT-Sicherheit</h3>
+      <p>Firewall, Monitoring und Backup-Konzepte – damit Ihre Daten sicher bleiben.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3>Support & Wartung</h3>
+      <p>Persönlicher Ansprechpartner, schnelle Reaktionszeiten und regelmäßige Wartung.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Digitalisierung</h3>
+      <p>Wir begleiten Sie bei der Digitalisierung Ihrer Prozesse – von der Analyse bis zur Umsetzung.</p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ABOUT -->
+<section id="ueber-uns">
+  <div class="section-label">Über uns</div>
+  <div class="about-inner">
+    <div class="about-text">
+      <h2>IT mit Handschlag aus dem Norden</h2>
+      <p>Nordix steht für bodenständige IT-Kompetenz – direkt aus Schleswig-Holstein. Wir sind kein anonymes Großunternehmen, sondern ein verlässlicher Partner, der Ihre Herausforderungen versteht.</p>
+      <p>Ob Privatperson mit einem Computerproblem oder Unternehmen mit komplexer IT-Infrastruktur – bei uns ist jeder willkommen.</p>
+      <div class="stat-row">
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Regional</div>
+        </div>
+        <div>
+          <div class="stat-num">24h</div>
+          <div class="stat-label">Reaktionszeit</div>
+        </div>
+        <div>
+          <div class="stat-num">Alle</div>
+          <div class="stat-label">Willkommen</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="tag">// Unser Ansatz</div>
+      <h3>Einfach erklärt,<br />zuverlässig umgesetzt.</h3>
+      <ul class="about-list">
+        <li>Kostenlose Erstberatung</li>
+        <li>Transparente Angebote ohne Kleingedrucktes</li>
+        <li>Feste Ansprechpartner – keine Hotline</li>
+        <li>Vor-Ort-Service in der Region</li>
+        <li>Datenschutz nach deutschem Standard</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- CONTACT -->
+<section id="kontakt">
+  <div class="section-label">Kontakt</div>
+  <h2>Schreib uns</h2>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <h3>Nordix IT-Dienstleistungen</h3>
+      <p>Egal ob kleines Problem oder großes Projekt – schreib uns einfach. Wir melden uns schnell zurück.</p>
+      <div class="contact-detail">
+        <a href="mailto:info@nordix.cloud">✉ info@nordix.cloud</a>
+        <a href="tel:+494601000000">✆ +49 4601 000000</a>
+        <span style="font-size:14px;color:var(--muted)">📍 Flensburg, Schleswig-Holstein</span>
+      </div>
+    </div>
+
+    <form id="contact-form" action="https://formspree.io/f/DEINE_FORMSPREE_ID" method="POST">
+      <div class="form-row">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Max Mustermann" required />
+        </div>
+        <div>
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="email" placeholder="max@beispiel.de" required />
+        </div>
+      </div>
+      <div>
+        <label for="subject">Betreff</label>
+        <input type="text" id="subject" name="subject" placeholder="Wie können wir helfen?" />
+      </div>
+      <div>
+        <label for="message">Nachricht</label>
+        <textarea id="message" name="message" placeholder="Beschreibe dein Anliegen kurz..." required></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="Neue Anfrage über nordix.cloud" />
+      <input type="hidden" name="_language" value="de" />
+      <button type="submit" class="submit-btn">Nachricht senden →</button>
+      <div class="toast" id="toast"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 nordix.cloud</span>
+  <span>Flensburg · Schleswig-Holstein</span>
+</footer>
+
+<!-- NETWORK CANVAS -->
+<script>
+(function () {
+  const canvas = document.getElementById('network-canvas');
+  const ctx = canvas.getContext('2d');
+  const tooltip = document.getElementById('node-tooltip');
+  const ACCENT = '#1a3a5c';
+  const TYPES = ['server','router','pc','cloud','laptop','switch'];
+  const LABELS = { server:'Server', router:'Router', pc:'PC / Desktop', cloud:'Cloud', laptop:'Laptop', switch:'Switch' };
+
+  let nodes = [], packets = [];
+  let mouse = { x: -999, y: -999 };
+  let dragging = null, dragOffX = 0, dragOffY = 0, hoveredNode = null;
+
+  function resize() {
+    const r = canvas.parentElement.getBoundingClientRect();
+    canvas.width = r.width; canvas.height = r.height;
+  }
+
+  function drawIcon(type, x, y, r, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = ACCENT; ctx.fillStyle = ACCENT;
+    ctx.lineWidth = 1.4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const s = r * 0.52;
+    ctx.translate(x, y);
+    if (type === 'server') {
+      for (let i = -1; i <= 1; i++) {
+        const sy = i * s * 0.56;
+        ctx.beginPath(); ctx.roundRect(-s, sy - s*0.27, s*2, s*0.48, 3); ctx.stroke();
+        ctx.beginPath(); ctx.arc(s*0.58, sy, s*0.1, 0, Math.PI*2); ctx.fill();
+      }
+    } else if (type === 'router') {
+      ctx.beginPath(); ctx.arc(0,0,s*0.52,0,Math.PI*2); ctx.stroke();
+      for (let a=0;a<4;a++) {
+        const ang = (a/4)*Math.PI*2 - Math.PI/4;
+        ctx.beginPath(); ctx.moveTo(Math.cos(ang)*s*0.52,Math.sin(ang)*s*0.52); ctx.lineTo(Math.cos(ang)*s*0.92,Math.sin(ang)*s*0.92); ctx.stroke();
+        ctx.beginPath(); ctx.arc(Math.cos(ang)*s,Math.sin(ang)*s,s*0.12,0,Math.PI*2); ctx.fill();
+      }
+    } else if (type === 'pc') {
+      ctx.beginPath(); ctx.roundRect(-s*0.85,-s,s*1.7,s*1.35,3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-s*0.22,s*0.35); ctx.lineTo(-s*0.22,s*0.78); ctx.lineTo(s*0.22,s*0.78); ctx.lineTo(s*0.22,s*0.35); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-s*0.48,s*0.78); ctx.lineTo(s*0.48,s*0.78); ctx.stroke();
+    } else if (type === 'cloud') {
+      ctx.beginPath();
+      ctx.arc(-s*0.28,s*0.1,s*0.4,Math.PI,Math.PI*2);
+      ctx.arc(s*0.28,s*0.05,s*0.33,Math.PI,Math.PI*2);
+      ctx.arc(0,-s*0.14,s*0.5,Math.PI,0);
+      ctx.closePath(); ctx.stroke();
+    } else if (type === 'laptop') {
+      ctx.beginPath(); ctx.roundRect(-s*0.78,-s*0.58,s*1.56,s*1.05,3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-s,s*0.47); ctx.lineTo(s,s*0.47); ctx.stroke();
+    } else if (type === 'switch') {
+      ctx.beginPath(); ctx.roundRect(-s,-s*0.32,s*2,s*0.64,3); ctx.stroke();
+      for (let p=-2;p<=2;p++) { ctx.beginPath(); ctx.rect(p*s*0.34-s*0.1,-s*0.2,s*0.18,s*0.4); ctx.stroke(); }
+    }
+    ctx.restore();
+  }
+
+  function initNodes() {
+    const w = canvas.width, h = canvas.height;
+    const count = Math.max(7, Math.floor((w*h)/15000));
+    nodes = [];
+    nodes.push({ x:w*0.5, y:h*0.5, vx:0, vy:0, r:28, type:'server', pulse:0, pulseSpeed:0.02 });
+    for (let i=1;i<count;i++) {
+      nodes.push({
+        x: w*(0.08+Math.random()*0.84), y: h*(0.08+Math.random()*0.84),
+        vx: (Math.random()-0.5)*0.28, vy: (Math.random()-0.5)*0.28,
+        r: 18+Math.random()*9, type: TYPES[Math.floor(Math.random()*TYPES.length)],
+        pulse: Math.random()*Math.PI*2, pulseSpeed: 0.014+Math.random()*0.014
+      });
+    }
+  }
+
+  function spawnPacket() {
+    if (nodes.length < 2) return;
+    const from = Math.floor(Math.random()*nodes.length);
+    let to = Math.floor(Math.random()*nodes.length);
+    while (to===from) to = Math.floor(Math.random()*nodes.length);
+    if (Math.hypot(nodes[to].x-nodes[from].x, nodes[to].y-nodes[from].y) > 290) return;
+    packets.push({ from, to, progress:0, speed:0.007+Math.random()*0.009 });
+  }
+
+  function getNodeAt(x,y) {
+    for (let i=nodes.length-1;i>=0;i--) {
+      if (Math.hypot(x-nodes[i].x, y-nodes[i].y) < nodes[i].r+6) return nodes[i];
+    }
+    return null;
+  }
+
+  function coords(e) {
+    const r = canvas.getBoundingClientRect();
+    const s = e.touches ? e.touches[0] : e;
+    return { x: s.clientX-r.left, y: s.clientY-r.top };
+  }
+
+  canvas.addEventListener('mousemove', e => {
+    const {x,y} = coords(e);
+    mouse.x=x; mouse.y=y;
+    if (dragging) { dragging.x=x-dragOffX; dragging.y=y-dragOffY; dragging.vx=0; dragging.vy=0; }
+    const n = getNodeAt(x,y);
+    hoveredNode = n||null;
+    canvas.style.cursor = n ? 'grab' : 'crosshair';
+    if (n) {
+      tooltip.textContent = LABELS[n.type];
+      tooltip.style.left=(e.clientX+14)+'px';
+      tooltip.style.top=(e.clientY-8)+'px';
+      tooltip.style.opacity='1';
+    } else { tooltip.style.opacity='0'; }
+  });
+
+  canvas.addEventListener('mousedown', e => {
+    const {x,y} = coords(e);
+    const n = getNodeAt(x,y);
+    if (n) { dragging=n; dragOffX=x-n.x; dragOffY=y-n.y; canvas.style.cursor='grabbing'; e.preventDefault(); }
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (dragging) {
+      dragging.vx=(Math.random()-0.5)*0.6; dragging.vy=(Math.random()-0.5)*0.6;
+      dragging=null; canvas.style.cursor='crosshair';
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    mouse.x=-999; mouse.y=-999; hoveredNode=null; tooltip.style.opacity='0';
+  });
+
+  function draw() {
+    const w=canvas.width, h=canvas.height;
+    ctx.clearRect(0,0,w,h);
+
+    nodes.forEach(n => {
+      if (n===dragging) return;
+      n.x+=n.vx; n.y+=n.vy;
+      if (n.x<n.r){n.x=n.r;n.vx=Math.abs(n.vx);}
+      if (n.x>w-n.r){n.x=w-n.r;n.vx=-Math.abs(n.vx);}
+      if (n.y<n.r){n.y=n.r;n.vy=Math.abs(n.vy);}
+      if (n.y>h-n.r){n.y=h-n.r;n.vy=-Math.abs(n.vy);}
+      const md=Math.hypot(mouse.x-n.x, mouse.y-n.y);
+      if (md<90&&md>0) {
+        const f=(90-md)/90*0.6;
+        n.vx-=((mouse.x-n.x)/md)*f; n.vy-=((mouse.y-n.y)/md)*f;
+      }
+      n.vx*=0.995; n.vy*=0.995;
+    });
+
+    for (let i=0;i<nodes.length;i++) {
+      for (let j=i+1;j<nodes.length;j++) {
+        const a=nodes[i], b=nodes[j];
+        const dist=Math.hypot(b.x-a.x,b.y-a.y);
+        if (dist>270) continue;
+        ctx.save();
+        ctx.strokeStyle=ACCENT; ctx.globalAlpha=(1-dist/270)*0.28;
+        ctx.lineWidth=0.8; ctx.setLineDash([4,7]);
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    packets=packets.filter(p=>p.progress<1);
+    packets.forEach(p => {
+      p.progress+=p.speed;
+      const a=nodes[p.from], b=nodes[p.to];
+      if (Math.hypot(b.x-a.x,b.y-a.y)>290){p.progress=1;return;}
+      ctx.save();
+      ctx.globalAlpha=0.9*Math.sin(p.progress*Math.PI);
+      ctx.fillStyle=ACCENT;
+      ctx.beginPath();
+      ctx.arc(a.x+(b.x-a.x)*p.progress, a.y+(b.y-a.y)*p.progress, 2.8, 0, Math.PI*2);
+      ctx.fill(); ctx.restore();
+    });
+
+    if (Math.random()<0.045) spawnPacket();
+
+    nodes.forEach(n => {
+      n.pulse+=n.pulseSpeed;
+      const glow=0.5+0.5*Math.sin(n.pulse);
+      const hot = n===hoveredNode||n===dragging;
+
+      ctx.save(); ctx.globalAlpha=hot?0.22:glow*0.1; ctx.strokeStyle=ACCENT;
+      ctx.lineWidth=hot?1.5:1;
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.r+(hot?10:6+glow*5),0,Math.PI*2); ctx.stroke(); ctx.restore();
+
+      ctx.save(); ctx.globalAlpha=hot?0.16:0.07+glow*0.04; ctx.fillStyle=ACCENT;
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fill(); ctx.restore();
+
+      ctx.save(); ctx.globalAlpha=hot?0.55:0.22+glow*0.14; ctx.strokeStyle=ACCENT;
+      ctx.lineWidth=hot?1.6:1.1;
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.stroke(); ctx.restore();
+
+      drawIcon(n.type, n.x, n.y, n.r, hot?0.85:0.5+glow*0.2);
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  resize(); initNodes(); draw();
+  window.addEventListener('resize', ()=>{ resize(); initNodes(); });
+})();
+</script>
+
+<!-- FORM -->
+<script>
+  const form = document.getElementById('contact-form');
+  const toast = document.getElementById('toast');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent='Wird gesendet…'; btn.disabled=true;
+    try {
+      const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+      if (res.ok) { toast.textContent='✓ Vielen Dank! Wir melden uns bald.'; toast.style.background='#1a3a5c'; form.reset(); }
+      else { toast.textContent='Fehler beim Senden – bitte direkt per E-Mail schreiben.'; toast.style.background='#8b2020'; }
+    } catch { toast.textContent='Keine Verbindung – bitte direkt per E-Mail schreiben.'; toast.style.background='#8b2020'; }
+    toast.classList.add('show'); btn.textContent='Nachricht senden →'; btn.disabled=false;
+    setTimeout(()=>toast.classList.remove('show'), 6000);
+  });
+</script>
+
+</body>
+</html>
