@@ -38,7 +38,7 @@
       background: rgba(245,244,240,0.88);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      padding: 0 2rem; height: 56px;
+      padding: 0 3rem; height: 56px;
       display: flex; align-items: center; justify-content: space-between;
     }
 
@@ -72,17 +72,18 @@
       min-height: 100vh;
       display: grid; grid-template-columns: 1fr 1fr;
       align-items: center; gap: 3rem;
-      padding: 8rem 2rem 4rem;
-      max-width: 1020px; margin: 0 auto;
+      padding: 8rem 3rem 4rem;
+      max-width: 1280px; margin: 0 auto;
     }
 
     .hero-visual { position: relative; height: 440px; cursor: crosshair; }
     #network-canvas { width: 100%; height: 100%; display: block; }
 
     @media (max-width: 700px) {
-      .hero { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
       .hero-visual { height: 260px; order: -1; }
       nav ul { display: none; }
+      nav { padding: 0 1.5rem; }
     }
 
     .hero-eyebrow {
@@ -130,10 +131,12 @@
     /* SHARED */
     .section-divider {
       border: none; border-top: 1px solid var(--border);
-      max-width: 920px; margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
     }
 
-    section { max-width: 920px; margin: 0 auto; padding: 5rem 2rem; }
+    section { max-width: 1280px; margin: 0 auto; padding: 5rem 3rem; }
+
+    @media (max-width: 700px) { section { padding: 3rem 1.5rem; } }
 
     .section-label {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
@@ -245,11 +248,14 @@
 
     /* FOOTER */
     footer {
-      border-top: 1px solid var(--border); padding: 1.8rem 2rem;
+      border-top: 1px solid var(--border); padding: 1.8rem 3rem;
       display: flex; align-items: center; justify-content: space-between;
-      max-width: 920px; margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
       font-size: 12px; color: var(--muted); font-family: var(--mono);
+      flex-wrap: wrap; gap: 8px;
     }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
 
     /* TOAST */
     .toast { display: none; padding: 11px 18px; border-radius: 8px; font-size: 13px; margin-top: 10px; color: white; }
@@ -272,11 +278,12 @@
 <!-- NAV -->
 <nav>
   <a class="logo" href="#">
-    <span class="logo-br">//</span>nordix<span class="logo-dot"></span>cloud
+    <span class="logo-br">//</span>nordix<span class="logo-dot"></span>
   </a>
   <ul>
     <li><a href="#leistungen">Leistungen</a></li>
     <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="team.html">Team</a></li>
     <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
   </ul>
 </nav>
@@ -285,7 +292,7 @@
 <div class="hero">
   <div class="hero-text">
     <div class="hero-eyebrow">IT-Dienstleistungen · Schleswig-Holstein</div>
-    <h1>Technologie,<br />die <em>funktioniert.</em><br />Aus dem Norden.</h1>
+    <h1>Technologie,<br />aus dem Norden,<br />die <em>funktioniert.</em></h1>
     <p class="hero-sub">Nordix hilft – egal ob Privatperson, Selbstständiger oder Unternehmen. Zuverlässige IT, klar erklärt und persönlich betreut.</p>
     <div class="tech-badges">
       <span class="badge">Netzwerk</span>
@@ -435,6 +442,11 @@
 <footer>
   <span>© 2026 nordix.cloud</span>
   <span>Flensburg · Schleswig-Holstein</span>
+  <span>
+    <a href="impressum.html">Impressum</a>
+    &nbsp;·&nbsp;
+    <a href="team.html">Team</a>
+  </span>
 </footer>
 
 <!-- NETWORK CANVAS -->
@@ -504,11 +516,21 @@
     for (let i=1;i<count;i++) {
       nodes.push({
         x: w*(0.08+Math.random()*0.84), y: h*(0.08+Math.random()*0.84),
-        vx: (Math.random()-0.5)*0.28, vy: (Math.random()-0.5)*0.28,
+        // Increased base velocity for autonomous movement
+        vx: (Math.random()-0.5)*0.7,
+        vy: (Math.random()-0.5)*0.7,
         r: 18+Math.random()*9, type: TYPES[Math.floor(Math.random()*TYPES.length)],
-        pulse: Math.random()*Math.PI*2, pulseSpeed: 0.014+Math.random()*0.014
+        pulse: Math.random()*Math.PI*2, pulseSpeed: 0.014+Math.random()*0.014,
+        // Autonomous wandering
+        wander: Math.random()*Math.PI*2,
+        wanderSpeed: (Math.random()-0.5)*0.04
       });
     }
+    // Also give the center server some movement
+    nodes[0].vx = (Math.random()-0.5)*0.4;
+    nodes[0].vy = (Math.random()-0.5)*0.4;
+    nodes[0].wander = 0;
+    nodes[0].wanderSpeed = 0.02;
   }
 
   function spawnPacket() {
@@ -556,7 +578,7 @@
 
   window.addEventListener('mouseup', () => {
     if (dragging) {
-      dragging.vx=(Math.random()-0.5)*0.6; dragging.vy=(Math.random()-0.5)*0.6;
+      dragging.vx=(Math.random()-0.5)*0.8; dragging.vy=(Math.random()-0.5)*0.8;
       dragging=null; canvas.style.cursor='crosshair';
     }
   });
@@ -571,17 +593,35 @@
 
     nodes.forEach(n => {
       if (n===dragging) return;
+
+      // Autonomous wandering: gradually change direction
+      n.wander += n.wanderSpeed;
+      const wanderForce = 0.012;
+      n.vx += Math.cos(n.wander) * wanderForce;
+      n.vy += Math.sin(n.wander) * wanderForce;
+
       n.x+=n.vx; n.y+=n.vy;
+
+      // Bounce off walls
       if (n.x<n.r){n.x=n.r;n.vx=Math.abs(n.vx);}
       if (n.x>w-n.r){n.x=w-n.r;n.vx=-Math.abs(n.vx);}
       if (n.y<n.r){n.y=n.r;n.vy=Math.abs(n.vy);}
       if (n.y>h-n.r){n.y=h-n.r;n.vy=-Math.abs(n.vy);}
+
+      // Mouse repulsion
       const md=Math.hypot(mouse.x-n.x, mouse.y-n.y);
       if (md<90&&md>0) {
         const f=(90-md)/90*0.6;
         n.vx-=((mouse.x-n.x)/md)*f; n.vy-=((mouse.y-n.y)/md)*f;
       }
-      n.vx*=0.995; n.vy*=0.995;
+
+      // Speed cap – keep movement smooth but not too fast
+      const speed = Math.hypot(n.vx, n.vy);
+      const maxSpeed = 1.1;
+      if (speed > maxSpeed) { n.vx = (n.vx/speed)*maxSpeed; n.vy = (n.vy/speed)*maxSpeed; }
+
+      // Gentle friction
+      n.vx*=0.998; n.vy*=0.998;
     });
 
     for (let i=0;i<nodes.length;i++) {
