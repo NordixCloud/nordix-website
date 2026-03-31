@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGB – Nordix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f4f0; --surface: #ffffff; --text: #0f0f0e;
+      --muted: #6b6b66; --accent: #1a3a5c; --accent-light: #e8edf3;
+      --border: rgba(0,0,0,0.09); --font: 'DM Sans', sans-serif; --mono: 'DM Mono', monospace;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(245,244,240,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border); padding: 0 3rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: var(--mono); font-weight: 500; font-size: 15px; letter-spacing: 0.04em; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+    .logo-br { color: var(--muted); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a { text-decoration: none; font-size: 14px; color: var(--muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { background: var(--accent) !important; color: #fff !important; padding: 6px 16px; border-radius: 6px; font-size: 13px !important; font-weight: 500; }
+
+    main { max-width: 760px; margin: 0 auto; padding: 7rem 3rem 5rem; }
+
+    .page-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .page-label::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 300; letter-spacing: -0.015em; margin-bottom: 0.5rem; }
+    .intro-text { color: var(--muted); font-size: 14px; font-weight: 300; margin-bottom: 2.5rem; }
+
+    .legal-block { margin-bottom: 2.5rem; }
+    .legal-block h2 { font-size: 13px; font-weight: 500; font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+    .legal-block p { font-size: 15px; color: var(--text); font-weight: 300; line-height: 1.7; margin-bottom: 0.5rem; }
+    .legal-block a { color: var(--accent); text-decoration: none; }
+    .legal-block a:hover { text-decoration: underline; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    footer { border-top: 1px solid var(--border); padding: 1.8rem 3rem; display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; font-size: 12px; color: var(--muted); font-family: var(--mono); flex-wrap: wrap; gap: 8px; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 700px) { main { padding: 6rem 1.5rem 3rem; } nav { padding: 0 1.5rem; } nav ul { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html"><span class="logo-br">//</span>nordix</a>
+  <ul>
+    <li><a href="index.html#leistungen">Leistungen</a></li>
+    <li><a href="index.html#ueber-uns">Über uns</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="index.html#kontakt" class="nav-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-label">Rechtliches</div>
+  <h1>Allgemeine Geschäftsbedingungen</h1>
+  <p class="intro-text">Diese AGB gelten für alle Verträge, Leistungen und Supportleistungen zwischen Nordix IT-Dienstleistungen (Maxim Maron &amp; Daneel Klink, Am Knick 39, 24939 Flensburg) – im Folgenden „Anbieter" – und seinen Kunden, soweit nicht ausdrücklich schriftlich etwas anderes vereinbart wurde.</p>
+
+  <div class="legal-block">
+    <h2>1. Vertragsgegenstand</h2>
+    <p>Der Anbieter erbringt IT-Dienstleistungen, Softwarebereitstellung, Hosting, Cloud-Services, Support, Beratung und Schulungen gemäß den individuellen Vereinbarungen oder den Leistungsbeschreibungen auf der Website oder im Angebot.</p>
+    <p>Der genaue Leistungsumfang ergibt sich aus dem jeweiligen Vertrag, Angebot oder den Produktbeschreibungen.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>2. Vertragsschluss</h2>
+    <p>Angebote des Anbieters sind freibleibend und unverbindlich.</p>
+    <p>Der Vertrag kommt durch schriftliche Auftragsbestätigung, Annahme durch den Kunden oder die Ausführung der vereinbarten Leistung zustande.</p>
+    <p>Änderungen, Nebenabreden oder Zusatzleistungen bedürfen der Schriftform.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>3. Preise und Zahlungsbedingungen</h2>
+    <p>Es gelten die im Angebot stehenden Preise, zzgl. der gesetzlichen Mehrwertsteuer.</p>
+    <p>Die Erstberatung inklusive erstem Vor-Ort-Besuch und Angebotserstellung ist für den Kunden kostenlos.</p>
+    <p>Rechnungen sind innerhalb von 30 Tagen nach Erbringung der Leistung zu zahlen, sofern keine anderen Vereinbarungen bestehen.</p>
+    <p>Bei Zahlungsverzug ist der Anbieter berechtigt, Verzugszinsen in gesetzlicher Höhe zu verlangen sowie Dienstleistungen auszusetzen, bis offene Beträge beglichen sind.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>4. Leistungszeit und Lieferung</h2>
+    <p>Liefer- oder Leistungsfristen sind, soweit nicht ausdrücklich als verbindlich vereinbart, unverbindlich.</p>
+    <p>Verzögerungen durch höhere Gewalt, technische Störungen oder fehlende Mitwirkung des Kunden berechtigen nicht zu Schadensersatz oder Rücktritt.</p>
+    <p>Softwarebereitstellungen erfolgen in der Regel nach Verfügbarkeit und spätestens innerhalb des vereinbarten Zeitraums.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>5. Mitwirkungspflichten des Kunden</h2>
+    <p>Der Kunde stellt alle erforderlichen Informationen, Zugänge, Rechte und Ressourcen rechtzeitig zur Verfügung.</p>
+    <p>Verzögerungen durch fehlende Mitwirkung berechtigen den Anbieter, Lieferzeiten angemessen zu verschieben oder Zusatzkosten zu berechnen.</p>
+    <p>Der Kunde ist verantwortlich für Datensicherung und Backups seiner Systeme, soweit nicht explizit durch den Anbieter übernommen.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>6. Software, Lizenzen und Nutzungsrechte</h2>
+    <p>Der Anbieter räumt dem Kunden ein nicht-ausschließliches, nicht übertragbares Nutzungsrecht an der gelieferten Software ein.</p>
+    <p>Jegliche Vervielfältigung, Weitergabe, Reverse Engineering oder Nutzung außerhalb des vereinbarten Zwecks ist untersagt.</p>
+    <p>Drittsoftware oder Open-Source-Komponenten unterliegen deren eigenen Lizenzbedingungen.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>7. Cloud- und Hosting-Dienste</h2>
+    <p>Der Anbieter stellt Cloud- und Hosting-Dienste nach Maßgabe der vertraglich vereinbarten Leistungsbeschreibung bereit.</p>
+    <p>Der Anbieter haftet nicht für Ausfälle, Unterbrechungen oder Datenverlust, soweit sie nicht vorsätzlich oder grob fahrlässig verursacht wurden.</p>
+    <p>Der Kunde ist für die Sicherheit seiner Zugangsdaten, Passwörter und Daten verantwortlich.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>8. Support und Wartung</h2>
+    <p>Supportleistungen werden gemäß der vertraglich vereinbarten Service-Level-Agreement (SLA) erbracht.</p>
+    <p>Notfall- und Fernwartungseinsätze können gesondert berechnet werden, sofern nicht anders vereinbart.</p>
+    <p>Der Anbieter behält sich das Recht vor, Support nur für die aktuelle Version der Software oder der Systeme zu leisten.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>9. Gewährleistung</h2>
+    <p>Der Anbieter gewährleistet, dass die Leistungen bei Übergabe vertragsgemäß und funktionsfähig sind.</p>
+    <p>Mängel sind unverzüglich schriftlich anzuzeigen.</p>
+    <p>Bei berechtigten Mängeln leistet der Anbieter nach Wahl Nachbesserung oder Ersatzlieferung.</p>
+    <p>Weitergehende Ansprüche, insbesondere Schadensersatz, sind ausgeschlossen, soweit nicht Vorsatz oder grobe Fahrlässigkeit vorliegt.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>10. Haftung</h2>
+    <p>Die Haftung des Anbieters ist auf Vorsatz und grobe Fahrlässigkeit beschränkt.</p>
+    <p>Bei leichter Fahrlässigkeit haftet der Anbieter nur für die Verletzung wesentlicher Vertragspflichten und begrenzt auf den typischen vorhersehbaren Schaden.</p>
+    <p>Eine Haftung für entgangenen Gewinn, indirekte Schäden oder Datenverlust ist ausgeschlossen.</p>
+    <p>Die Haftung für Drittanbieter oder externe Cloud-Dienste ist ausgeschlossen.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>11. Datenschutz</h2>
+    <p>Der Anbieter verarbeitet personenbezogene Daten des Kunden gemäß der <a href="datenschutz.html">Datenschutzerklärung</a> auf der Website.</p>
+    <p>Der Kunde stimmt der Verarbeitung seiner Daten zu, soweit sie für die Durchführung des Vertrags erforderlich ist.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>12. Laufzeit und Kündigung</h2>
+    <p>Verträge gelten für die vereinbarte Laufzeit.</p>
+    <p>Eine ordentliche Kündigung vor Ablauf der vereinbarten Laufzeit ist ausgeschlossen, soweit nicht anders vereinbart.</p>
+    <p>Eine außerordentliche Kündigung aus wichtigem Grund ist jederzeit möglich.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>13. Änderungen der AGB</h2>
+    <p>Der Anbieter behält sich vor, diese AGB anzupassen. Änderungen werden auf der Website veröffentlicht und gelten ab dem Zeitpunkt der Veröffentlichung.</p>
+  </div>
+
+  <hr />
+
+  <div class="legal-block">
+    <h2>14. Schlussbestimmungen</h2>
+    <p>Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts.</p>
+    <p>Gerichtsstand ist, soweit gesetzlich zulässig, Flensburg / Schleswig-Holstein.</p>
+    <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 nordix.cloud</span>
+  <span>Flensburg · Schleswig-Holstein</span>
+  <span>
+    <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+    <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+    <a href="agb.html">AGB</a> &nbsp;·&nbsp;
+    <a href="team.html">Team</a>
+  </span>
+</footer>
+
+</body>
+</html>
