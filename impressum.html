@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum – Nordix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f4f0; --surface: #ffffff; --text: #0f0f0e;
+      --muted: #6b6b66; --accent: #1a3a5c; --accent-light: #e8edf3;
+      --border: rgba(0,0,0,0.09); --font: 'DM Sans', sans-serif; --mono: 'DM Mono', monospace;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(245,244,240,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border); padding: 0 3rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: var(--mono); font-weight: 500; font-size: 15px; letter-spacing: 0.04em; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+    .logo-br { color: var(--muted); }
+    .logo-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; display: inline-block; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a { text-decoration: none; font-size: 14px; color: var(--muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { background: var(--accent) !important; color: #fff !important; padding: 6px 16px; border-radius: 6px; font-size: 13px !important; font-weight: 500; }
+
+    main { max-width: 760px; margin: 0 auto; padding: 7rem 3rem 5rem; }
+
+    .page-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .page-label::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 300; letter-spacing: -0.015em; margin-bottom: 2.5rem; }
+
+    .impressum-block { margin-bottom: 2.5rem; }
+    .impressum-block h2 { font-size: 13px; font-weight: 500; font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+    .impressum-block p { font-size: 15px; color: var(--text); font-weight: 300; line-height: 1.7; }
+    .impressum-block a { color: var(--accent); text-decoration: none; }
+    .impressum-block a:hover { text-decoration: underline; }
+
+    .notice-box { background: var(--accent-light); border: 1px solid rgba(26,58,92,0.15); border-radius: 10px; padding: 1.5rem; margin-top: 3rem; font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .notice-box strong { color: var(--text); font-weight: 500; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    footer { border-top: 1px solid var(--border); padding: 1.8rem 3rem; display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; font-size: 12px; color: var(--muted); font-family: var(--mono); flex-wrap: wrap; gap: 8px; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 700px) { main { padding: 6rem 1.5rem 3rem; } nav { padding: 0 1.5rem; } nav ul { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <span class="logo-br">//</span>nordix<span class="logo-dot"></span>
+  </a>
+  <ul>
+    <li><a href="index.html#leistungen">Leistungen</a></li>
+    <li><a href="index.html#ueber-uns">Über uns</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="index.html#kontakt" class="nav-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-label">Rechtliches</div>
+  <h1>Impressum</h1>
+
+  <div class="impressum-block">
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p>
+      Nordix IT-Dienstleistungen<br />
+      Maxim Maron &amp; Daneel Klink<br />
+      Am Knick 39<br />
+      24939 Flensburg<br />
+      Schleswig-Holstein
+    </p>
+  </div>
+
+  <hr />
+
+  <div class="impressum-block">
+    <h2>Kontakt</h2>
+    <p>
+      E-Mail: <a href="mailto:info@nordix.cloud">info@nordix.cloud</a><br />
+      Telefon: <a href="tel:+494601000000">+49 4601 000000</a><br />
+      Web: <a href="https://nordix.cloud">nordix.cloud</a>
+    </p>
+  </div>
+
+  <hr />
+
+  <div class="impressum-block">
+    <h2>Umsatzsteuer-ID</h2>
+    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:<br /><em style="color:var(--muted)">wird nachgetragen</em></p>
+  </div>
+
+  <hr />
+
+  <div class="impressum-block">
+    <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+    <p>
+      Maxim Maron &amp; Daneel Klink<br />
+      Am Knick 39<br />
+      24939 Flensburg
+    </p>
+  </div>
+
+  <hr />
+
+  <div class="impressum-block">
+    <h2>Streitschlichtung</h2>
+    <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.<br />Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+    <br />
+    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+  </div>
+
+  <hr />
+
+  <div class="impressum-block">
+    <h2>Haftung für Inhalte</h2>
+    <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+  </div>
+
+  <div class="impressum-block">
+    <h2>Haftung für Links</h2>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+  </div>
+
+  <div class="impressum-block">
+    <h2>Urheberrecht</h2>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+  </div>
+
+  <div class="notice-box">
+    <strong>Hinweis:</strong> Dieses Impressum gilt für die Website nordix.cloud sowie alle zugehörigen Unterseiten. IDs (Steuernummer, ggf. Gewerbeanmeldung) werden nach Abschluss der Anmeldung ergänzt.
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 nordix.cloud</span>
+  <span>Flensburg · Schleswig-Holstein</span>
+  <span>
+    <a href="impressum.html">Impressum</a>
+    &nbsp;·&nbsp;
+    <a href="team.html">Team</a>
+  </span>
+</footer>
+
+</body>
+</html>
