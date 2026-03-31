@@ -143,7 +143,6 @@
       text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem;
       display: flex; align-items: center; gap: 10px;
     }
-    .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
 
     h2 {
       font-size: clamp(1.6rem, 4vw, 2.4rem);
@@ -278,7 +277,7 @@
 <!-- NAV -->
 <nav>
   <a class="logo" href="#">
-    <span class="logo-br">//</span>nordix<span class="logo-dot"></span>
+    <span class="logo-br">//</span>nordix
   </a>
   <ul>
     <li><a href="#leistungen">Leistungen</a></li>
@@ -406,13 +405,13 @@
       <h3>Nordix IT-Dienstleistungen</h3>
       <p>Egal ob kleines Problem oder großes Projekt – schreib uns einfach. Wir melden uns schnell zurück.</p>
       <div class="contact-detail">
-        <a href="mailto:info@nordix.cloud">✉ info@nordix.cloud</a>
+        <a href="/cdn-cgi/l/email-protection#670e09010827090815030e1f49040b081203">✉ <span class="__cf_email__" data-cfemail="751c1b131a351b1a07111c0d5b16191a0011">[email&#160;protected]</span></a>
         <a href="tel:+494601000000">✆ +49 4601 000000</a>
         <span style="font-size:14px;color:var(--muted)">📍 Flensburg, Schleswig-Holstein</span>
       </div>
     </div>
 
-    <form id="contact-form" action="https://formspree.io/f/DEINE_FORMSPREE_ID" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/mgopyadd" method="POST">
       <div class="form-row">
         <div>
           <label for="name">Name</label>
@@ -450,7 +449,7 @@
 </footer>
 
 <!-- NETWORK CANVAS -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function () {
   const canvas = document.getElementById('network-canvas');
   const ctx = canvas.getContext('2d');
@@ -691,11 +690,4 @@
       const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
       if (res.ok) { toast.textContent='✓ Vielen Dank! Wir melden uns bald.'; toast.style.background='#1a3a5c'; form.reset(); }
       else { toast.textContent='Fehler beim Senden – bitte direkt per E-Mail schreiben.'; toast.style.background='#8b2020'; }
-    } catch { toast.textContent='Keine Verbindung – bitte direkt per E-Mail schreiben.'; toast.style.background='#8b2020'; }
-    toast.classList.add('show'); btn.textContent='Nachricht senden →'; btn.disabled=false;
-    setTimeout(()=>toast.classList.remove('show'), 6000);
-  });
-</script>
-
-</body>
-</html>
+    } catch { toast.textContent='Keine Verbindung – bitte direkt per E
